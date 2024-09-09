@@ -1,6 +1,5 @@
-
-
 'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
@@ -71,6 +70,34 @@ export default function Home() {
   const [avoidsPlasticBottles, setAvoidsPlasticBottles] = useState(1)
   const [avoidsArtificialFlavors, setAvoidsArtificialFlavors] = useState(1)
   const [limitedAlcoholIntake, setLimitedAlcoholIntake] = useState(1)
+  const [doesNotSmokeCigarettes, setDoesNotSmokeCigarettes] = useState(1)
+  const [doesNotUseChewingTobacco, setDoesNotUseChewingTobacco] = useState(1)
+  const [doesNotSmokeCigars, setDoesNotSmokeCigars] = useState(1)
+  const [doesNotVape, setDoesNotVape] = useState(1)
+  const [avoidsOTCMedications, setAvoidsOTCMedications] = useState(1)
+  const [noOralAntibiotics, setNoOralAntibiotics] = useState(1)
+  const [noOralContraceptives, setNoOralContraceptives] = useState(1)
+  const [limitsHighMercuryFish, setLimitsHighMercuryFish] = useState(1)
+
+  // Environmental Toxins
+  const [filtersShowerWater, setFiltersShowerWater] = useState(1)
+  const [filtersAir, setFiltersAir] = useState(1)
+  const [noScentedCandles, setNoScentedCandles] = useState(1)
+  const [noAirFresheners, setNoAirFresheners] = useState(1)
+  const [readsProductLabels, setReadsProductLabels] = useState(1)
+  const [unscentedHairProducts, setUnscentedHairProducts] = useState(1)
+  const [unscentedLaundryDetergent, setUnscentedLaundryDetergent] = useState(1)
+  const [unscentedDishSoap, setUnscentedDishSoap] = useState(1)
+  const [noFabricSoftener, setNoFabricSoftener] = useState(1)
+  const [unscentedCleaningSupplies, setUnscentedCleaningSupplies] = useState(1)
+  const [noPerfume, setNoPerfume] = useState(1)
+  const [unscentedDeodorant, setUnscentedDeodorant] = useState(1)
+  const [aluminumFreeDeodorant, setAluminumFreeDeodorant] = useState(1)
+  const [unscentedLotion, setUnscentedLotion] = useState(1)
+  const [unscentedSoap, setUnscentedSoap] = useState(1)
+  const [fluorideFreeToothpaste, setFluorideFreeToothpaste] = useState(1)
+  const [checksToxicityRatings, setChecksToxicityRatings] = useState(1)
+  const [usesNaturalFabrics, setUsesNaturalFabrics] = useState(1)
 
   const [showEstimatedLifespan, setShowEstimatedLifespan] = useState(false)
 
@@ -314,10 +341,22 @@ export default function Home() {
                           groundsRegularly + focusesOnGratitude;
     adjustedLifespan += mindBodyScore * 0.3;
 
-    // Toxins Impact
+    // Toxins Impact (extended)
     const toxinAvoidanceScore = filtersWater + checksWaterQuality + drinksEnoughWater + 
-                                avoidsPlasticBottles + avoidsArtificialFlavors + limitedAlcoholIntake;
+                                avoidsPlasticBottles + avoidsArtificialFlavors + limitedAlcoholIntake +
+                                doesNotSmokeCigarettes + doesNotUseChewingTobacco + doesNotSmokeCigars +
+                                doesNotVape + avoidsOTCMedications + noOralAntibiotics +
+                                noOralContraceptives + limitsHighMercuryFish;
     adjustedLifespan += toxinAvoidanceScore * 0.3;
+
+    // Environmental Toxins Impact
+    const environmentalToxinAvoidanceScore = filtersShowerWater + filtersAir + noScentedCandles +
+                                             noAirFresheners + readsProductLabels + unscentedHairProducts +
+                                             unscentedLaundryDetergent + unscentedDishSoap + noFabricSoftener +
+                                             unscentedCleaningSupplies + noPerfume + unscentedDeodorant +
+                                             aluminumFreeDeodorant + unscentedLotion + unscentedSoap +
+                                             fluorideFreeToothpaste + checksToxicityRatings + usesNaturalFabrics;
+    adjustedLifespan += environmentalToxinAvoidanceScore * 0.2;
 
     // Cap the maximum lifespan at 135 years
     const finalLifespan = Math.min(135, Math.max(40, Math.round(adjustedLifespan)));
@@ -485,6 +524,40 @@ export default function Home() {
                 <ToggleInput label="Avoid plastic water bottles" value={avoidsPlasticBottles} onChange={setAvoidsPlasticBottles} />
                 <ToggleInput label="Avoid artificial flavors" value={avoidsArtificialFlavors} onChange={setAvoidsArtificialFlavors} />
                 <ToggleInput label="Limited alcohol intake" value={limitedAlcoholIntake} onChange={setLimitedAlcoholIntake} />
+                <ToggleInput label="Do not smoke cigarettes" value={doesNotSmokeCigarettes} onChange={setDoesNotSmokeCigarettes} />
+                <ToggleInput label="Do not use chewing tobacco" value={doesNotUseChewingTobacco} onChange={setDoesNotUseChewingTobacco} />
+                <ToggleInput label="Do not smoke cigars" value={doesNotSmokeCigars} onChange={setDoesNotSmokeCigars} />
+                <ToggleInput label="Do not vape" value={doesNotVape} onChange={setDoesNotVape} />
+                <ToggleInput label="Avoid over-the-counter medications" value={avoidsOTCMedications} onChange={setAvoidsOTCMedications} />
+                <ToggleInput label="No oral antibiotics in past 2 years" value={noOralAntibiotics} onChange={setNoOralAntibiotics} />
+                <ToggleInput label="Do not take oral contraceptives" value={noOralContraceptives} onChange={setNoOralContraceptives} />
+                <ToggleInput label="Limit high-mercury fish consumption" value={limitsHighMercuryFish} onChange={setLimitsHighMercuryFish} />
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-2xl font-semibold mb-4">Environmental Toxins</h2>
+              <div className="space-y-4">
+                <ToggleInput label="Filter shower water" value={filtersShowerWater} onChange={setFiltersShowerWater} />
+                <ToggleInput label="Filter air in house" value={filtersAir} onChange={setFiltersAir} />
+                <ToggleInput label="No scented candles" value={noScentedCandles} onChange={setNoScentedCandles} />
+                <ToggleInput label="No air fresheners" value={noAirFresheners} onChange={setNoAirFresheners} />
+                <ToggleInput label="Read product labels" value={readsProductLabels} onChange={setReadsProductLabels} />
+                <ToggleInput label="Use unscented hair products" value={unscentedHairProducts} onChange={setUnscentedHairProducts} />
+                <ToggleInput label="Use unscented laundry detergent" value={unscentedLaundryDetergent} onChange={setUnscentedLaundryDetergent} />
+                <ToggleInput label="Use unscented dish soap" value={unscentedDishSoap} onChange={setUnscentedDishSoap} />
+                <ToggleInput label="No fabric softener" value={noFabricSoftener} onChange={setNoFabricSoftener} />
+                <ToggleInput label="Use unscented cleaning supplies" value={unscentedCleaningSupplies} onChange={setUnscentedCleaningSupplies} />
+                <ToggleInput label="No perfume or cologne" value={noPerfume} onChange={setNoPerfume} />
+                <ToggleInput label="Use unscented deodorant" value={unscentedDeodorant} onChange={setUnscentedDeodorant} />
+                <ToggleInput label="Use aluminum-free deodorant" value={aluminumFreeDeodorant} onChange={setAluminumFreeDeodorant} />
+                <ToggleInput label="Use unscented lotion" value={unscentedLotion} onChange={setUnscentedLotion} />
+                <ToggleInput label="Use unscented soap" value={unscentedSoap} onChange={setUnscentedSoap} />
+                <ToggleInput label="Use fluoride-free toothpaste" value={fluorideFreeToothpaste} onChange={setFluorideFreeToothpaste} />
+                <ToggleInput label="Check toxicity ratings" value={checksToxicityRatings} onChange={setChecksToxicityRatings} />
+                <ToggleInput label="Use natural fabrics" value={usesNaturalFabrics} onChange={setUsesNaturalFabrics} />
               </div>
             </div>
           </div>
