@@ -21,7 +21,7 @@ export default function Home() {
   const [hsCRP, setHsCRP] = useState(1)
   const [hemoglobinA1c, setHemoglobinA1c] = useState(5.5)
   const [uricAcid, setUricAcid] = useState(5)
-  const [vitaminD, setVitaminD] = useState(30) 
+  const [vitaminD, setVitaminD] = useState(30)
   const [restingHeartRate, setRestingHeartRate] = useState(60)
 
   // Lifestyle Metrics
